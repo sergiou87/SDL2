@@ -35,7 +35,8 @@ OBJS= src/SDL.o \
       src/filesystem/dummy/SDL_sysfilesystem.o \
       src/render/SDL_render.o \
       src/render/SDL_yuv_sw.o \
-      src/render/psp/SDL_render_psp.o \
+      src/render/opengl/SDL_render_gl.o \
+      src/render/opengl/SDL_shaders_gl.o \
       src/render/software/SDL_blendfillrect.o \
       src/render/software/SDL_blendline.o \
       src/render/software/SDL_blendpoint.o \

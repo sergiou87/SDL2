@@ -147,7 +147,7 @@
 #define SDL_VIDEO_DRIVER_PSP   1
 
 /* PSP render driver */
-#define SDL_VIDEO_RENDER_PSP   1
+#define SDL_VIDEO_RENDER_OGL   1
 
 #define SDL_POWER_PSP          1
 

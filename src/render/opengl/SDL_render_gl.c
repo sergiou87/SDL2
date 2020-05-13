@@ -489,6 +489,7 @@ GL_CreateRenderer(SDL_Window * window, Uint32 flags)
         (value & SDL_GL_CONTEXT_DEBUG_FLAG)) {
         data->debug_enabled = SDL_TRUE;
     }
+#if !__PSP__
     if (data->debug_enabled && SDL_GL_ExtensionSupported("GL_ARB_debug_output")) {
         PFNGLDEBUGMESSAGECALLBACKARBPROC glDebugMessageCallbackARBFunc = (PFNGLDEBUGMESSAGECALLBACKARBPROC) SDL_GL_GetProcAddress("glDebugMessageCallbackARB");
 
@@ -500,6 +501,7 @@ GL_CreateRenderer(SDL_Window * window, Uint32 flags)
         /* Make sure our callback is called when errors actually happen */
         data->glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS_ARB);
     }
+#endif
 
     if (SDL_GL_ExtensionSupported("GL_ARB_texture_non_power_of_two")) {
         data->GL_ARB_texture_non_power_of_two_supported = SDL_TRUE;
@@ -1149,16 +1151,16 @@ static void
 GL_SetBlendMode(GL_RenderData * data, SDL_BlendMode blendMode)
 {
     if (blendMode != data->current.blendMode) {
-        if (blendMode == SDL_BLENDMODE_NONE) {
+        //if (blendMode == SDL_BLENDMODE_NONE) {
             data->glDisable(GL_BLEND);
-        } else {
-            data->glEnable(GL_BLEND);
-            data->glBlendFuncSeparate(GetBlendFunc(SDL_GetBlendModeSrcColorFactor(blendMode)),
-                                      GetBlendFunc(SDL_GetBlendModeDstColorFactor(blendMode)),
-                                      GetBlendFunc(SDL_GetBlendModeSrcAlphaFactor(blendMode)),
-                                      GetBlendFunc(SDL_GetBlendModeDstAlphaFactor(blendMode)));
-            data->glBlendEquation(GetBlendEquation(SDL_GetBlendModeColorOperation(blendMode)));
-        }
+        // } else {
+        //     data->glEnable(GL_BLEND);
+        //     data->glBlendFuncSeparate(GetBlendFunc(SDL_GetBlendModeSrcColorFactor(blendMode)),
+        //                               GetBlendFunc(SDL_GetBlendModeDstColorFactor(blendMode)),
+        //                               GetBlendFunc(SDL_GetBlendModeSrcAlphaFactor(blendMode)),
+        //                               GetBlendFunc(SDL_GetBlendModeDstAlphaFactor(blendMode)));
+        //     data->glBlendEquation(GetBlendEquation(SDL_GetBlendModeColorOperation(blendMode)));
+        // }
         data->current.blendMode = blendMode;
     }
 }
@@ -1298,7 +1300,15 @@ GL_RenderFillRects(SDL_Renderer * renderer, const SDL_FRect * rects, int count)
     for (i = 0; i < count; ++i) {
         const SDL_FRect *rect = &rects[i];
 
-        data->glRectf(rect->x, rect->y, rect->x + rect->w, rect->y + rect->h);
+        // According to the documentation, the code below seems to be equivalent: https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glRect.xml
+        //data->glRectf(rect->x, rect->y, rect->x + rect->w, rect->y + rect->h);
+        data->glBegin(GL_POLYGON);
+        data->glVertex2f(rect->x, rect->y);
+        data->glVertex2f(rect->x + rect->w, rect->y);
+        data->glVertex2f(rect->x + rect->w, rect->y + rect->h);
+        data->glVertex2f(rect->x, rect->y + rect->h);
+        data->glEnd();
+
     }
     return GL_CheckError("", renderer);
 }
@@ -1468,7 +1478,7 @@ GL_RenderCopyEx(SDL_Renderer * renderer, SDL_Texture * texture,
     /* Translate to flip, rotate, translate to position */
     data->glPushMatrix();
     data->glTranslatef((GLfloat)dstrect->x + centerx, (GLfloat)dstrect->y + centery, (GLfloat)0.0);
-    data->glRotated(angle, (GLdouble)0.0, (GLdouble)0.0, (GLdouble)1.0);
+    data->glRotatef(angle, (GLdouble)0.0, (GLdouble)0.0, (GLdouble)1.0);
 
     data->glBegin(GL_TRIANGLE_STRIP);
     data->glTexCoord2f(minu, minv);

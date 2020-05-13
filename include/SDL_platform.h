@@ -157,6 +157,7 @@
 #if defined(__PSP__)
 #undef __PSP__
 #define __PSP__ 1
+#define __SDL_NOGETPROCADDR__
 #endif
 
 /* The NACL compiler defines __native_client__ and __pnacl__

@@ -37,7 +37,8 @@ SDL_PROC_UNUSED(void, glBitmap,
                  const GLubyte *))
 SDL_PROC(void, glBlendEquation, (GLenum))
 SDL_PROC_UNUSED(void, glBlendFunc, (GLenum, GLenum))
-SDL_PROC(void, glBlendFuncSeparate, (GLenum, GLenum, GLenum, GLenum))
+// I have no idea hot to replace this specific function
+//SDL_PROC(void, glBlendFuncSeparate, (GLenum, GLenum, GLenum, GLenum))
 SDL_PROC_UNUSED(void, glCallList, (GLuint))
 SDL_PROC_UNUSED(void, glCallLists, (GLsizei, GLenum, const GLvoid *))
 SDL_PROC(void, glClear, (GLbitfield))
@@ -117,9 +118,9 @@ SDL_PROC_UNUSED(void, glDrawBuffer, (GLenum mode))
 SDL_PROC_UNUSED(void, glDrawElements,
                 (GLenum mode, GLsizei count, GLenum type,
                  const GLvoid * indices))
-SDL_PROC(void, glDrawPixels,
-         (GLsizei width, GLsizei height, GLenum format, GLenum type,
-          const GLvoid * pixels))
+// SDL_PROC(void, glDrawPixels,
+//          (GLsizei width, GLsizei height, GLenum format, GLenum type,
+//           const GLvoid * pixels))
 SDL_PROC_UNUSED(void, glEdgeFlag, (GLboolean flag))
 SDL_PROC_UNUSED(void, glEdgeFlagPointer,
                 (GLsizei stride, const GLvoid * pointer))
@@ -175,7 +176,7 @@ SDL_PROC_UNUSED(void, glGetMaterialiv,
 SDL_PROC_UNUSED(void, glGetPixelMapfv, (GLenum map, GLfloat * values))
 SDL_PROC_UNUSED(void, glGetPixelMapuiv, (GLenum map, GLuint * values))
 SDL_PROC_UNUSED(void, glGetPixelMapusv, (GLenum map, GLushort * values))
-SDL_PROC(void, glGetPointerv, (GLenum pname, GLvoid * *params))
+// SDL_PROC(void, glGetPointerv, (GLenum pname, GLvoid * *params))
 SDL_PROC_UNUSED(void, glGetPolygonStipple, (GLubyte * mask))
 SDL_PROC(const GLubyte *, glGetString, (GLenum name))
 SDL_PROC_UNUSED(void, glGetTexEnvfv,
@@ -296,7 +297,7 @@ SDL_PROC(void, glPixelStorei, (GLenum pname, GLint param))
 SDL_PROC_UNUSED(void, glPixelTransferf, (GLenum pname, GLfloat param))
 SDL_PROC_UNUSED(void, glPixelTransferi, (GLenum pname, GLint param))
 SDL_PROC_UNUSED(void, glPixelZoom, (GLfloat xfactor, GLfloat yfactor))
-SDL_PROC(void, glPointSize, (GLfloat size))
+// SDL_PROC(void, glPointSize, (GLfloat size))
 SDL_PROC_UNUSED(void, glPolygonMode, (GLenum face, GLenum mode))
 SDL_PROC_UNUSED(void, glPolygonOffset, (GLfloat factor, GLfloat units))
 SDL_PROC_UNUSED(void, glPolygonStipple, (const GLubyte * mask))
@@ -315,7 +316,7 @@ SDL_PROC_UNUSED(void, glRasterPos2d, (GLdouble x, GLdouble y))
 SDL_PROC_UNUSED(void, glRasterPos2dv, (const GLdouble * v))
 SDL_PROC_UNUSED(void, glRasterPos2f, (GLfloat x, GLfloat y))
 SDL_PROC_UNUSED(void, glRasterPos2fv, (const GLfloat * v))
-SDL_PROC(void, glRasterPos2i, (GLint x, GLint y))
+// SDL_PROC(void, glRasterPos2i, (GLint x, GLint y))
 SDL_PROC_UNUSED(void, glRasterPos2iv, (const GLint * v))
 SDL_PROC_UNUSED(void, glRasterPos2s, (GLshort x, GLshort y))
 SDL_PROC_UNUSED(void, glRasterPos2sv, (const GLshort * v))
@@ -345,8 +346,8 @@ SDL_PROC(void, glReadPixels,
 SDL_PROC_UNUSED(void, glRectd,
                 (GLdouble x1, GLdouble y1, GLdouble x2, GLdouble y2))
 SDL_PROC_UNUSED(void, glRectdv, (const GLdouble * v1, const GLdouble * v2))
-SDL_PROC(void, glRectf,
-                (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2))
+// SDL_PROC(void, glRectf,
+//                 (GLfloat x1, GLfloat y1, GLfloat x2, GLfloat y2))
 SDL_PROC_UNUSED(void, glRectfv, (const GLfloat * v1, const GLfloat * v2))
 SDL_PROC_UNUSED(void, glRecti, (GLint x1, GLint y1, GLint x2, GLint y2))
 SDL_PROC_UNUSED(void, glRectiv, (const GLint * v1, const GLint * v2))
@@ -354,8 +355,8 @@ SDL_PROC_UNUSED(void, glRects,
                 (GLshort x1, GLshort y1, GLshort x2, GLshort y2))
 SDL_PROC_UNUSED(void, glRectsv, (const GLshort * v1, const GLshort * v2))
 SDL_PROC_UNUSED(GLint, glRenderMode, (GLenum mode))
-SDL_PROC(void, glRotated,
-                (GLdouble angle, GLdouble x, GLdouble y, GLdouble z))
+// SDL_PROC(void, glRotated,
+//                 (GLdouble angle, GLdouble x, GLdouble y, GLdouble z))
 SDL_PROC(void, glRotatef,
                 (GLfloat angle, GLfloat x, GLfloat y, GLfloat z))
 SDL_PROC_UNUSED(void, glScaled, (GLdouble x, GLdouble y, GLdouble z))
