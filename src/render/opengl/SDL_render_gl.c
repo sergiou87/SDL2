@@ -680,9 +680,15 @@ convert_format(GL_RenderData *renderdata, Uint32 pixel_format,
 {
     switch (pixel_format) {
     case SDL_PIXELFORMAT_ARGB8888:
+#if __PSP__
+        *internalFormat = GL_RGBA;
+        *format = GL_RGBA;
+        *type = GL_UNSIGNED_BYTE;
+#else
         *internalFormat = GL_RGBA8;
         *format = GL_BGRA;
         *type = GL_UNSIGNED_INT_8_8_8_8_REV;
+#endif
         break;
     case SDL_PIXELFORMAT_YV12:
     case SDL_PIXELFORMAT_IYUV:
